@@ -7,12 +7,14 @@ public class Movement : MonoBehaviour
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float rotationThrust = 100f;
     [SerializeField] AudioClip jetpackSound;
+    
+    [SerializeField] ParticleSystem mainThrusterParticles;
 
     Rigidbody rb;
     AudioSource audioSource;
 
     // Start is called before the first frame update
-    void Start()
+     void Start()
     {
        rb = GetComponent<Rigidbody>();
        audioSource = GetComponent<AudioSource>();
@@ -30,31 +32,65 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-           if (!audioSource.isPlaying) 
-           {
-                audioSource.PlayOneShot(jetpackSound);
-            }
+            StartThrusting();
         }
-    else
+        else
+        {
+            StopThrusting();
+        }
+    }
+
+        void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(jetpackSound);
+        }
+        if (!mainThrusterParticles.isPlaying)
+        {
+            mainThrusterParticles.Play();
+        }
+    }
+
+    void StopThrusting()
     {
         audioSource.Stop();
+        mainThrusterParticles.Stop();
     }
-    }
+
 
     void ProcessRotation()
     {
-      if (Input.GetKey(KeyCode.A))
-        {
-            ApplyRotation(rotationThrust);
-        }
-        else if (Input.GetKey(KeyCode.D))
-       {
-           ApplyRotation(-rotationThrust);
-       }
+        StartRotation();
     }
 
-     void ApplyRotation(float rotationThisFrame)
+    void StartRotation()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            RotateLeft();
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            RotateRight();
+        }
+    }
+
+    void RotateLeft()
+    {
+        ApplyRotation(rotationThrust);
+    }
+
+
+     void RotateRight()
+    {
+        ApplyRotation(-rotationThrust);
+    }
+
+
+
+    void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true; //freezing rotation so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
