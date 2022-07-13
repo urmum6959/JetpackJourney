@@ -15,11 +15,18 @@ public class CollisionHandler : MonoBehaviour
 
      AudioSource audioSource;
 
+     bool debugCheats = true;
+
      bool isTransitioning = false;
+     bool noclipEnabled = false;
+
+     int skipCheat = 0;
+     int noClip = 0;
+
 
     void OnCollisionEnter(Collision other) 
     {
-        if(isTransitioning){
+        if(isTransitioning || noclipEnabled){
         return;
         }
         switch(other.gameObject.tag)
@@ -84,6 +91,45 @@ public class CollisionHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        DebugKeys();
+    }
+    void DebugKeys()
+  {
+        if(skipCheat == 0 && Input.GetKeyDown(KeyCode.S))
+        {
+            skipCheat++;
+        }
+        if(skipCheat == 1 && Input.GetKeyDown(KeyCode.K))
+        {
+            skipCheat++;
+        }
+        if(skipCheat == 2 && Input.GetKeyDown(KeyCode.I))
+        {
+            skipCheat++;
+        }
+        if(skipCheat == 3 && Input.GetKeyDown(KeyCode.P))
+        {
+            LoadNextLevel();
+        }
+        else if(noClip == 0 && Input.GetKeyDown(KeyCode.G))
+        {
+            noClip++;
+        }
+        if(noClip == 1 && Input.GetKeyDown(KeyCode.H))
+        {
+            noClip++;
+        }
+        if(noClip == 2 && Input.GetKeyDown(KeyCode.O))
+        {
+            noClip++;
+        }
+        if(noClip == 3 && Input.GetKeyDown(KeyCode.S))
+        {
+            noClip++;
+        }
+        if(noClip == 4 && Input.GetKeyDown(KeyCode.T))
+        {
+            noclipEnabled = !noclipEnabled; //toggle collision
+        }
     }
 }
