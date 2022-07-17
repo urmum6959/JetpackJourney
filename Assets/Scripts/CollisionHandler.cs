@@ -95,6 +95,7 @@ public class CollisionHandler : MonoBehaviour
     }
     void DebugKeys()
   {
+    if(debugCheats == true){
         if(skipCheat == 0 && Input.GetKeyDown(KeyCode.S))
         {
             skipCheat++;
@@ -131,5 +132,9 @@ public class CollisionHandler : MonoBehaviour
         {
             noclipEnabled = !noclipEnabled; //toggle collision
         }
+        else{
+            return;
+        }
+    }
     }
 }

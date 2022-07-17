@@ -292,7 +292,7 @@ Transform:
   - {fileID: 3759819000520493489}
   - {fileID: 7395893096132245631}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1987558054863399771
 MonoBehaviour:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainThrust: 250
-  rotationThrust: 100
+  rotationThrust: 150
   jetpackSound: {fileID: 8300000, guid: 485aba6692cb9ee4490e0fefb3b8eec0, type: 3}
   mainThrusterParticles: {fileID: 7209484194085270071}
 --- !u!54 &39583835174187684
@@ -522,8 +522,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.460907, y: 2.9868555, z: 1.6829906}
-  m_Center: {x: -0.23045349, y: 0.49918318, z: 0.0038138628}
+  m_Size: {x: 1.4481888, y: 2.9868555, z: 1.6829906}
+  m_Center: {x: -0.22409439, y: 0.49918318, z: 0.0038138628}
 --- !u!1 &2382320935524813940
 GameObject:
   m_ObjectHideFlags: 0
